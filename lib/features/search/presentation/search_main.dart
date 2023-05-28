@@ -45,134 +45,123 @@ class _SearchMainWidgetState extends ConsumerState<SearchMainWidget> {
             onPressed: () => Navigator.pop(context),
           ),
           title: const Text(" Search")),
-      body: Scrollbar(
-        thumbVisibility: true,
-        thickness: 3,
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 190,
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, mainAxisExtent: 45),
-                    itemCount: searchHeaths.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: Radio(
-                            value: Health.values[index],
-                            groupValue: _selected,
-                            activeColor: Colors.green,
-                            onChanged: (value) {
-                              setState(() {});
-                              _selected = value!;
-                              rdoValue = searchHeaths[index];
-                            }),
-                        title: Text(
-                          searchHeaths[index],
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40),
-                    child: CustomDropDownWidget(
-                      controller: dayController,
-                      sugguestionsCallback: (value) {
-                        final data = recordList
-                            .map((element) => element.day)
-                            .toSet()
-                            .toList();
-
-                        data.retainWhere((element) => element
-                            .toLowerCase()
-                            .contains(value.toLowerCase()));
-                        return data;
-                      },
-                      hintText: ref.read(isLanguageProvider)
-                          ? "ရက်နဲ့ရှာမည်"
-                          : "Find By Day",
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40),
-                    child: CustomDropDownWidget(
-                      controller: monthController,
-                      sugguestionsCallback: (value) {
-                        final data = recordList
-                            .map((element) => element.month)
-                            .toSet()
-                            .toList();
-
-                        data.retainWhere((element) => element
-                            .toLowerCase()
-                            .contains(value.toLowerCase()));
-                        return data;
-                      },
-                      hintText: ref.read(isLanguageProvider)
-                          ? "လနဲ့ရှာမည်"
-                          : "Find By Month",
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                    padding: const EdgeInsets.only(left: 40.0, right: 40),
-                    child: CustomDropDownWidget(
-                      controller: yearController,
-                      sugguestionsCallback: (value) {
-                        final data = recordList
-                            .map((element) => element.year)
-                            .toSet()
-                            .toList();
-
-                        data.retainWhere((element) => element
-                            .toLowerCase()
-                            .contains(value.toLowerCase()));
-                        return data;
-                      },
-                      hintText: ref.read(isLanguageProvider)
-                          ? "နှစ်နဲ့ရှာမည်"
-                          : "Find By Year",
-                    )),
-                const SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0, right: 20),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () {
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 190,
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, mainAxisExtent: 45),
+                itemCount: searchHeaths.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Radio(
+                        value: Health.values[index],
+                        groupValue: _selected,
+                        activeColor: Colors.green,
+                        onChanged: (value) {
                           setState(() {});
-                          myList = null;
-                          myList = getList(
-                              [dayController, monthController, yearController]);
-                          dayController.clear();
-                          monthController.clear();
-                          yearController.clear();
-                        },
-                        child: const Text("Search")),
-                  ),
-                ),
-                myList != null
-                    ? Expanded(
-                        child: SearchListWidget(
-                        myList: myList!,
-                      ))
-                    : const Text("")
-              ],
+                          _selected = value!;
+                          rdoValue = searchHeaths[index];
+                        }),
+                    title: Text(
+                      searchHeaths[index],
+                      style: const TextStyle(fontSize: 15),
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
+            Padding(
+                padding: const EdgeInsets.only(left: 40.0, right: 40),
+                child: CustomDropDownWidget(
+                  controller: dayController,
+                  sugguestionsCallback: (value) {
+                    final data = recordList
+                        .map((element) => element.day)
+                        .toSet()
+                        .toList();
+
+                    data.retainWhere((element) =>
+                        element.toLowerCase().contains(value.toLowerCase()));
+                    return data;
+                  },
+                  hintText: ref.read(isLanguageProvider)
+                      ? "ရက်နဲ့ရှာမည်"
+                      : "Find By Day",
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(left: 40.0, right: 40),
+                child: CustomDropDownWidget(
+                  controller: monthController,
+                  sugguestionsCallback: (value) {
+                    final data = recordList
+                        .map((element) => element.month)
+                        .toSet()
+                        .toList();
+
+                    data.retainWhere((element) =>
+                        element.toLowerCase().contains(value.toLowerCase()));
+                    return data;
+                  },
+                  hintText: ref.read(isLanguageProvider)
+                      ? "လနဲ့ရှာမည်"
+                      : "Find By Month",
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+                padding: const EdgeInsets.only(left: 40.0, right: 40),
+                child: CustomDropDownWidget(
+                  controller: yearController,
+                  sugguestionsCallback: (value) {
+                    final data = recordList
+                        .map((element) => element.year)
+                        .toSet()
+                        .toList();
+
+                    data.retainWhere((element) =>
+                        element.toLowerCase().contains(value.toLowerCase()));
+                    return data;
+                  },
+                  hintText: ref.read(isLanguageProvider)
+                      ? "နှစ်နဲ့ရှာမည်"
+                      : "Find By Year",
+                )),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                    onPressed: () {
+                      setState(() {});
+                      myList = null;
+                      myList = getList(
+                          [dayController, monthController, yearController]);
+                      dayController.text = "";
+                      monthController.text = "";
+                      yearController.text = "";
+                    },
+                    child: const Text("Search")),
+              ),
+            ),
+            myList != null
+                ? Expanded(
+                    child: SearchListWidget(
+                    myList: myList!,
+                  ))
+                : const Text("")
+          ],
         ),
       ),
     );

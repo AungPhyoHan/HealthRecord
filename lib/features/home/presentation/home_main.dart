@@ -147,6 +147,8 @@ class _HomeMainWidgetState extends ConsumerState<HomeMainWidget> {
                         SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.green),
                                 onPressed: () {
                                   setState(() {});
                                   if (_myKey.currentState!.validate()) {
