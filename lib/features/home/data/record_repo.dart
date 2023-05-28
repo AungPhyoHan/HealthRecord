@@ -5,11 +5,12 @@ import 'package:intl/intl.dart';
 import 'package:realm/realm.dart';
 
 class RecordRepo {
-  void addRecord(String name) {
+  void addRecord(String nameEn, String nameMm) {
     recordList.realm.write(() {
       recordList.realm.add(RecordCls(
           ObjectId(),
-          name,
+          nameEn,
+          nameMm,
           DateFormat.jm().format(DateTime.now()),
           DateTime.now(),
           DateTime.now().day.toString(),

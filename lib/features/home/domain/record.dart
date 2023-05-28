@@ -5,7 +5,8 @@ part 'record.g.dart';
 class _RecordCls {
   @PrimaryKey()
   late ObjectId id;
-  late String name;
+  late String nameEn;
+  late String nameMm;
   late String time;
   late DateTime now;
   late String day;

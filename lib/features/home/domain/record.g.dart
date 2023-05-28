@@ -10,7 +10,8 @@ class RecordCls extends _RecordCls
     with RealmEntity, RealmObjectBase, RealmObject {
   RecordCls(
     ObjectId id,
-    String name,
+    String nameEn,
+    String nameMm,
     String time,
     DateTime now,
     String day,
@@ -18,7 +19,8 @@ class RecordCls extends _RecordCls
     String year,
   ) {
     RealmObjectBase.set(this, 'id', id);
-    RealmObjectBase.set(this, 'name', name);
+    RealmObjectBase.set(this, 'nameEn', nameEn);
+    RealmObjectBase.set(this, 'nameMm', nameMm);
     RealmObjectBase.set(this, 'time', time);
     RealmObjectBase.set(this, 'now', now);
     RealmObjectBase.set(this, 'day', day);
@@ -34,9 +36,14 @@ class RecordCls extends _RecordCls
   set id(ObjectId value) => RealmObjectBase.set(this, 'id', value);
 
   @override
-  String get name => RealmObjectBase.get<String>(this, 'name') as String;
+  String get nameEn => RealmObjectBase.get<String>(this, 'nameEn') as String;
   @override
-  set name(String value) => RealmObjectBase.set(this, 'name', value);
+  set nameEn(String value) => RealmObjectBase.set(this, 'nameEn', value);
+
+  @override
+  String get nameMm => RealmObjectBase.get<String>(this, 'nameMm') as String;
+  @override
+  set nameMm(String value) => RealmObjectBase.set(this, 'nameMm', value);
 
   @override
   String get time => RealmObjectBase.get<String>(this, 'time') as String;
@@ -76,7 +83,8 @@ class RecordCls extends _RecordCls
     RealmObjectBase.registerFactory(RecordCls._);
     return const SchemaObject(ObjectType.realmObject, RecordCls, 'RecordCls', [
       SchemaProperty('id', RealmPropertyType.objectid, primaryKey: true),
-      SchemaProperty('name', RealmPropertyType.string),
+      SchemaProperty('nameEn', RealmPropertyType.string),
+      SchemaProperty('nameMm', RealmPropertyType.string),
       SchemaProperty('time', RealmPropertyType.string),
       SchemaProperty('now', RealmPropertyType.timestamp),
       SchemaProperty('day', RealmPropertyType.string),

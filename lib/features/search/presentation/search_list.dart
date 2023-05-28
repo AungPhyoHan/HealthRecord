@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:father_health/mystorage/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -35,7 +36,9 @@ class _SearchListWidgetState extends ConsumerState<SearchListWidget> {
                   child: Card(
                     elevation: 1,
                     child: ListTile(
-                      title: Text(data.results[index].name),
+                      title: Text(ref.watch(isLanguageProvider)
+                          ? data.results[index].nameMm
+                          : data.results[index].nameEn),
                       subtitle: Text(
                           "${DateFormat('MM/dd/yyyy').format(data.results[index].now)} ${data.results[index].time}"),
                       leading: IconButton(

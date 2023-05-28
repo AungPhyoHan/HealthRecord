@@ -27,7 +27,9 @@ class _CustomDropDownWidgetState extends ConsumerState<CustomDropDownWidget> {
         textFieldConfiguration: TextFieldConfiguration(
             controller: widget.controller,
             keyboardType: TextInputType.none,
-            decoration: InputDecoration(hintText: widget.hintText),
+            decoration: InputDecoration(
+                hintText: widget.hintText,
+                suffixIcon: const Icon(Icons.arrow_drop_down)),
             onTap: () => widget.controller.clear()),
         suggestionsCallback: widget.sugguestionsCallback,
         itemBuilder: (context, itemData) {
